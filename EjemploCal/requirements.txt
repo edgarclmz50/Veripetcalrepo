@@ -1,0 +1,7 @@
+streamlit
+pandas
+couchdb
+plotly
+numpy
+fpdf2
+matplotlib

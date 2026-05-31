@@ -1,0 +1,183 @@
+{
+    "fecha": "2026-03-03T16:05:00.318046",
+    "instrumento": {
+        "marca": "Wika",
+        "serie": "2323",
+        "rango_min": 0.0,
+        "rango_max": 100.0,
+        "unidad": "psi",
+        "clase": 0.05,
+        "resolucion": 0.01,
+        "tipo_indicacion": "Anal\u00f3gica",
+        "tamano": "4 in",
+        "fluido": "Aceite",
+        "lugar_calibracion": "Laboratorio",
+        "ubicacion": "Sala de maquina",
+        "rango_cal_min": 0.0,
+        "rango_cal_max": 100.0
+    },
+    "patron_id": "LAB-PRE-PAR-05",
+    "equipos_auxiliares": {
+        "fuente_presion": null,
+        "termohigrometro": "LAB-PRE-EAU-018 | Termohigrometro Data Loger"
+    },
+    "condiciones": {
+        "temp": 20.0,
+        "hr": 50.0,
+        "p_atm": 1013.25,
+        "h_inst": 0.0,
+        "h_pat": 0.1,
+        "g": 9.77
+    },
+    "procedimiento": {
+        "precargas_realizadas": false,
+        "prueba_hermeticidad_ok": false,
+        "tiempo_estancamiento": 5.0,
+        "estabilizacion_inicio": "00:15:00",
+        "estabilizacion_fin": "00:15:00",
+        "estado_equipo": "En Servicio",
+        "inspeccion_visual": [
+            "Rosca",
+            "Dial/Pantalla",
+            "Carcasa",
+            "Mica",
+            "Puntero/Aguja"
+        ]
+    },
+    "puntos": [
+        {
+            "Punto Nominal": 0.0,
+            "Lectura Asc 1": 0.0,
+            "Lectura Desc 1": 0.0,
+            "Lectura Asc 2": 0.0,
+            "Lectura Desc 2": 0.0
+        },
+        {
+            "Punto Nominal": 20.0,
+            "Lectura Asc 1": 20.01,
+            "Lectura Desc 1": 20.01,
+            "Lectura Asc 2": 20.02,
+            "Lectura Desc 2": 20.0
+        },
+        {
+            "Punto Nominal": 40.0,
+            "Lectura Asc 1": 40.0,
+            "Lectura Desc 1": 40.0,
+            "Lectura Asc 2": 40.0,
+            "Lectura Desc 2": 40.0
+        },
+        {
+            "Punto Nominal": 60.0,
+            "Lectura Asc 1": 60.0,
+            "Lectura Desc 1": 60.0,
+            "Lectura Asc 2": 60.0,
+            "Lectura Desc 2": 60.0
+        },
+        {
+            "Punto Nominal": 80.0,
+            "Lectura Asc 1": 80.0,
+            "Lectura Desc 1": 80.0,
+            "Lectura Asc 2": 80.0,
+            "Lectura Desc 2": 80.0
+        },
+        {
+            "Punto Nominal": 100.0,
+            "Lectura Asc 1": 100.0,
+            "Lectura Desc 1": 100.0,
+            "Lectura Asc 2": 100.0,
+            "Lectura Desc 2": 100.0
+        }
+    ],
+    "resultados_resumen": [
+        {
+            "Punto Nominal": 0.0,
+            "Lectura Promedio": 0.0,
+            "Ref. Corregida": 0.00012027659601432329,
+            "Error": -0.00012027659601432329,
+            "U Exp": 0.012420537309008862,
+            "Unidad": "psi",
+            "u_rep": 0.0,
+            "u_res_inst": 0.002886751345948129,
+            "u_patron": 0.0055,
+            "u_histe": 0.0,
+            "u_zero": 0.0,
+            "EMP": 0.05,
+            "Conformidad": "ACEPTADO"
+        },
+        {
+            "Punto Nominal": 20.0,
+            "Lectura Promedio": 20.01,
+            "Ref. Corregida": 20.000120276596014,
+            "Error": 0.009879723403987128,
+            "U Exp": 0.01583654202319141,
+            "Unidad": "psi",
+            "u_rep": 0.004082482904638543,
+            "u_res_inst": 0.002886751345948129,
+            "u_patron": 0.0055,
+            "u_histe": 0.002886751345947555,
+            "u_zero": 0.0,
+            "EMP": 0.05,
+            "Conformidad": "ACEPTADO"
+        },
+        {
+            "Punto Nominal": 40.0,
+            "Lectura Promedio": 40.0,
+            "Ref. Corregida": 40.00078694326268,
+            "Error": -0.0007869432626819162,
+            "U Exp": 0.012553642399505172,
+            "Unidad": "psi",
+            "u_rep": 0.0,
+            "u_res_inst": 0.002886751345948129,
+            "u_patron": 0.0055,
+            "u_histe": 0.0,
+            "u_zero": 0.0,
+            "EMP": 0.05,
+            "Conformidad": "ACEPTADO"
+        },
+        {
+            "Punto Nominal": 60.0,
+            "Lectura Promedio": 60.0,
+            "Ref. Corregida": 60.000120276596014,
+            "Error": -0.00012027659601443474,
+            "U Exp": 0.012669672092517735,
+            "Unidad": "psi",
+            "u_rep": 0.0,
+            "u_res_inst": 0.002886751345948129,
+            "u_patron": 0.0055,
+            "u_histe": 0.0,
+            "u_zero": 0.0,
+            "EMP": 0.05,
+            "Conformidad": "ACEPTADO"
+        },
+        {
+            "Punto Nominal": 80.0,
+            "Lectura Promedio": 80.0,
+            "Ref. Corregida": 80.00012027659601,
+            "Error": -0.00012027659600732932,
+            "U Exp": 0.01295709253184613,
+            "Unidad": "psi",
+            "u_rep": 0.0,
+            "u_res_inst": 0.002886751345948129,
+            "u_patron": 0.0055,
+            "u_histe": 0.0,
+            "u_zero": 0.0,
+            "EMP": 0.05,
+            "Conformidad": "ACEPTADO"
+        },
+        {
+            "Punto Nominal": 100.0,
+            "Lectura Promedio": 100.0,
+            "Ref. Corregida": 100.00012027659601,
+            "Error": -0.00012027659600732932,
+            "U Exp": 0.01326594691941069,
+            "Unidad": "psi",
+            "u_rep": 0.0,
+            "u_res_inst": 0.002886751345948129,
+            "u_patron": 0.0055,
+            "u_histe": 0.0,
+            "u_zero": 0.0,
+            "EMP": 0.05,
+            "Conformidad": "ACEPTADO"
+        }
+    ]
+}

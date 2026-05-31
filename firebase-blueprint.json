@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "System user information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "name": { "type": "string" },
+        "role": { "type": "string", "enum": ["technician", "admin", "client"] }
+      },
+      "required": ["id", "email", "name", "role"]
+    },
+    "WorkOrder": {
+      "title": "Work Order",
+      "description": "Calibration work order",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "clientId": { "type": "string" },
+        "clientName": { "type": "string" },
+        "scheduledDate": { "type": "number" },
+        "priority": { "type": "string" },
+        "location": { "type": "string" },
+        "status": { "type": "string" },
+        "technicianId": { "type": "string" }
+      },
+      "required": ["id", "clientId", "clientName", "scheduledDate"]
+    },
+    "CalibrationData": {
+      "title": "Calibration Data",
+      "description": "Full calibration record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "workOrderId": { "type": "string" },
+        "instrumentId": { "type": "string" },
+        "instrumentTag": { "type": "string" },
+        "clientName": { "type": "string" },
+        "status": { "type": "string" },
+        "technicianId": { "type": "string" },
+        "createdAt": { "type": "number" },
+        "updatedAt": { "type": "number" }
+      },
+      "required": ["id", "instrumentTag", "status", "technicianId"]
+    },
+    "Hallazgo": {
+      "title": "Hallazgo Técnico",
+      "description": "Knowledge base entry from field site",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "orderId": { "type": "string" },
+        "instrumentId": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "technicianId": { "type": "string" },
+        "createdAt": { "type": "number" }
+      },
+      "required": ["id", "orderId", "title", "content", "technicianId"]
+    }
+  },
+  "firestore": {
+    "users": {
+      "schema": "User",
+      "description": "Collection of users"
+    },
+    "workOrders": {
+      "schema": "WorkOrder",
+      "description": "Collection of work orders"
+    },
+    "calibrations": {
+      "schema": "CalibrationData",
+      "description": "Collection of calibration records"
+    },
+    "hallazgos": {
+      "schema": "Hallazgo",
+      "description": "Technical knowledge base entries"
+    },
+    "standards": {
+      "schema": "object",
+      "description": "Reference standards used in calibrations"
+    }
+  }
+}

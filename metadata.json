@@ -1,0 +1,14 @@
+{
+  "name": "VeriPet Metrología",
+  "description": "Sistema integral de calibración con captura offline (PWA), motor de cálculo de incertidumbre y portal de clientes.",
+  "requestFramePermissions": [
+    "camera",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "Offline Data Capture",
+    "Metrological Engine",
+    "PDF Certificate Generation",
+    "Client Repository"
+  ]
+}

@@ -1,0 +1,97 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Phase 3: Primitive Definitions
+    function isSignedIn() { return request.auth != null; }
+    function isVerified() { return isSignedIn() && request.auth.token.email_verified == true; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+    
+    // Auth-based identity
+    function isOwner(userId) { return isSignedIn() && request.auth.uid == userId; }
+    function isAdmin() { return isSignedIn() && exists(/databases/$(database)/documents/admins/$(request.auth.uid)); }
+
+    // Phase 4: Validation Helpers
+    function isValidUser(data) {
+      return data.keys().hasAll(['id', 'email', 'name', 'role']) &&
+             data.keys().size() == 4 &&
+             data.id is string && data.id.size() <= 64 &&
+             data.email is string && data.email.size() <= 128 &&
+             data.name is string && data.name.size() <= 128 &&
+             data.role in ['technician', 'admin', 'client'];
+    }
+
+    function isValidCalibration(data) {
+      return data.keys().hasAll(['id', 'instrumentTag', 'status', 'technicianId', 'createdAt', 'updatedAt']) &&
+             data.id is string && data.id.size() <= 64 &&
+             data.instrumentTag is string && data.instrumentTag.size() <= 64 &&
+             data.status in ['draft', 'preliminary', 'in_review', 'published'] &&
+             data.technicianId == request.auth.uid &&
+             data.createdAt is timestamp &&
+             data.updatedAt is timestamp;
+    }
+
+    // --- Collections ---
+
+    // USERS
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isOwner(userId) && isValidUser(incoming());
+      allow update: if (isOwner(userId) || isAdmin()) && 
+                    isValidUser(incoming()) && 
+                    incoming().role == existing().role; // Cannot change own role
+    }
+
+    // ADMINS (System collection)
+    match /admins/{adminId} {
+      allow read: if isSignedIn();
+      allow write: if false; // Only manageable via console
+    }
+
+    // CALIBRATIONS
+    match /calibrations/{calId} {
+      allow get: if isSignedIn();
+      allow list: if isSignedIn() && (resource.data.technicianId == request.auth.uid || isAdmin());
+      
+      allow create: if isVerified() && 
+                    isValidId(calId) && 
+                    isValidCalibration(incoming()) &&
+                    incoming().createdAt == request.time &&
+                    incoming().updatedAt == request.time;
+
+      allow update: if isVerified() && 
+                    isValidCalibration(incoming()) &&
+                    incoming().id == existing().id &&
+                    incoming().createdAt == existing().createdAt &&
+                    incoming().updatedAt == request.time &&
+                    (
+                      (existing().status != 'published' && (existing().technicianId == request.auth.uid || isAdmin())) ||
+                      isAdmin()
+                    ) &&
+                    (
+                      // Action: Normal update
+                      (incoming().diff(existing()).affectedKeys().hasOnly(['instrumentTag', 'clientName', 'instrumentDescription', 'magnitude', 'measurements', 'metadata', 'updatedAt', 'status', 'notes', 'uncertaintyResults', 'meanError', 'history']))
+                    );
+
+      allow delete: if isAdmin();
+    }
+
+    // WORK ORDERS
+    match /workOrders/{woId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+
+    // STANDARDS
+    match /standards/{stdId} {
+      allow read: if isSignedIn();
+      allow write: if isAdmin();
+    }
+  }
+}
